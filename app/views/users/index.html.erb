@@ -1,0 +1,30 @@
+
+<div class="container">
+  <h2>Manage Users</h2>
+  <%= link_to "Add User", new_user_path, class: "btn btn-success", style: "float: right;" %>
+  <table class="table table-hover user-list">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |u| %>
+        <tr>
+          <td><%= u.first_name %></td>
+          <td><%= u.last_name %></td>
+          <td><%= u.email %></td>
+          <td><%= u.type %></td>
+          <td>
+            <%= link_to "Edit", edit_user_path(u), class: "btn btn-primary" %>
+            <%= link_to "Delete", user_path(u), class: "btn btn-danger", method: :delete, data: {confirm: "You sure?"} %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

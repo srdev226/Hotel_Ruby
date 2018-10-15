@@ -1,0 +1,86 @@
+// Place all the styles related to the listing controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Navbar deep blue
+$deep-blue: #001f3f;
+
+div.pagination-container, .listings-placeholder {
+  text-align: center;
+}
+
+ul.pagination > li.active > a {
+  background-color: $deep-blue;
+  border-color: $deep-blue;
+}
+
+ul.pagination > li.active > a:hover {
+  background-color: $deep-blue;
+  border-color: $deep-blue;
+}
+
+ul.pagination > li > a {
+  color: $deep-blue;
+}
+
+// Tables CSS
+
+@media (max-width: 767px) {
+  .table-wrap table,
+  .table-wrap thead,
+  .table-wrap tbody,
+  .table-wrap th,
+  .table-wrap td,
+  .table-wrap tr {
+    display: block;
+  }
+  .table-wrap thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  .table-wrap td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%!important;
+    white-space: normal;
+    text-align: left;
+  }
+  .table-wrap td:before {
+    position: absolute;
+    top: 8px;
+    left: 15px;
+    width: 45%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+  }
+  .table-wrap td:first-child {
+    padding-top: 17px;
+  }
+  .table-wrap td:last-child {
+    padding-bottom: 16px;
+  }
+  .table-wrap td:first-child:before {
+    top: 17px;
+  }
+  .table-wrap td:before {
+    content: attr(data-title);
+  }
+  .table tbody tr {
+    border-top: 1px solid #ddd;
+  }
+  .table tbody tr td {
+    border: none;
+  }
+}
+
+.select2-container--bootstrap .select2-selection {
+  border: none !important;
+  box-shadow: 0 0 0 0 !important;
+  width: 100% !important;
+  padding-top: 10px !important;
+}

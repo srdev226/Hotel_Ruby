@@ -1,0 +1,32 @@
+<h4 style="text-align: center"> Your Listing at www.vacancytravel.com has been posted
+ </h4>
+
+<%= render 'layouts/spacer', height: '25px' %>
+
+<table class='row'>
+  <tbody>
+    <tr>
+      <h5>Your Reservation</h5>
+      <%= render 'mailers/listing_confirmed', listing: @listing, buyer_switch: false %>
+    </tr>
+  </tbody>
+</table>
+
+<%= render 'layouts/spacer', height: '25px' %>
+
+<table class='row'>
+  <tbody>
+    <tr>
+      <h5>Next Steps</h5>
+      <ul>
+        <li><p><strong>Confirmation</strong> - The listing has been confirmed as valid by the hotel and is now available to purchase at any time up until 12:00 noon local time the day of your reservations scheduled arrival.</p></li>
+        <li><p><strong>Rates</strong> - Rates at hotels do go up and down from time to time, so please make sure that your reservation is priced appropriately.  We recommend listing your reservation at least 30% below the hotels current price. You can login with your Vacancy Travel account at any time to update the pricing.</p></li>
+        <li><p><strong>Sold</strong> - When your reservation sells you will be notified immediately via email.</p></li>
+        <li><p><strong>Payment</strong> - will be sent to you 1 business day after the check-in date of your reservation.</p></li>
+        <li><p><strong>Security</strong> - Security is of the utmost importance to us a Vacancy Travel.  This is why only work with hotels we have a direct relationship with.  Your information will never be shared with the buyer and all details will be removed once the buyer purchases the reservation.</p></li>
+        <li><p><strong>Help</strong> - If you have any questions or concerns, please contact us at either help@vacancytravel.com or by phone at (415) 500-5018</p></li>
+      </ul>
+    </tr>
+  </tbody>
+</table>
+

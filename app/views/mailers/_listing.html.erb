@@ -1,0 +1,56 @@
+<h3 style="text-align: center"><%= title%></h3>
+<table align='center' class='container' style='margin-top: 50px; width: 780px; background-color: #f3f3f3;'>
+  <tbody>
+    <tr>
+      <th class='columns first last large-8'>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                <%= render 'hginapa/listings/room_images' %>
+              </th>
+              <th class='expander'></th>
+            </tr>
+          </tbody>
+        </table>
+      </th>
+      <th class='large-8'>
+        <table class='row'>
+          <tbody>
+            <tr>
+              <h3> Hilton Garden Inn Napa </h3>
+            </tr>
+          </tbody>
+        </table>
+        <table class='row'>
+          <tbody>
+            <tr>
+              <p><%= listing.room_type %></p>
+            </tr>
+          </tbody>
+        </table>
+        <table class='row'>
+          <tbody>
+            <tr>
+              <p>Check-in: <%= listing.check_in %></p>
+            </tr>
+          </tbody>
+        </table>
+        <table class='row'>
+          <tbody>
+            <tr>
+              <p>Check-out: <%= listing.check_out %></p>
+            </tr>
+          </tbody>
+        </table>
+        <table class='row'>
+          <tbody>
+            <tr>
+              <h3>$<%= listing.price%><span>/night</span></h3>
+            </tr>
+          </tbody>
+        </table>
+      </th>
+    </tr>
+  </tbody>
+</table>

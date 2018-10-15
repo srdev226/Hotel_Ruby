@@ -1,0 +1,23 @@
+A reservation on  www.vacancytravel.com has been purchased and the new guest info needs to be added to the seller’s reservation.
+
+Reservation Details
+
+<%= render 'mailers/listing_confirmed', listing: @listing, buyer_switch: false %>
+
+Seller Information
+
+<%= render 'mailers/seller_info', seller: @seller %>
+
+Buyer Information
+
+<%= render 'mailers/buyer_info', buyer: @buyer %>
+
+Next Steps
+
+Switch - All info for the new guest is provided in this email.  Please make sure everything is switched into the new guests name and the seller's info is removed.
+
+Security - Please make sure none of the seller’s info is ever made available to the new guest on the reservation.  Whenever possible please delete all personal info and make sure the buyer has no access to the seller's credit card for any incidental charges.
+
+Payment - Payment will be sent to seller of the reservation via the paypal address they provided when they set up your Vacancy Travel account within 1 business day after the check-in date of their new reservation. There is nothing for the hotel to do regarding payment.  If the either party has any questions about this please refer them to contact Vacancy Travel.
+
+Help - If you have any questions or concerns, please contact us at either help@vacancytravel.com or by phone at (415)500-5018

@@ -1,0 +1,23 @@
+        <div class="searchbar">
+          <div class="container">
+            <div class="row">
+              <h3>Explore unique hotel deals from people who can't use theirs.</h3>
+            </div>
+            <%= form_tag(search_path) do %>
+            <div class="row fields">
+              <div class="col-md-10">
+                <div class="input-group input-icon right">
+                  <span class="input-group-addon">
+                      <%= fa_icon "search"%>
+                  </span>
+                  <%= select_tag :hotel_name, options_for_select(@hotels.map{ |h| [h.fullname, h.shortname] }),class: "form-control" %>
+                </div>
+              </div>
+              
+              <div class="col-md-2 search-field">
+                <%= submit_tag 'Search', class: "btn btn-primary btn-block search-btn" %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>

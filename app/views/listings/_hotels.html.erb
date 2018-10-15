@@ -1,0 +1,30 @@
+<section id="hotels">
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-1">
+			<h4 class="text-primary"> Hotels around the world </h4>
+		</div>
+	</div>
+	<% @hotels.in_groups_of(5, false).each do |hotel| %>
+		<div class="row">
+	  		<div class="col-md-1">
+	  		</div>
+	  		<% hotel.each do |item| %>
+	  			<div class="col-md-2 hotel">
+	  				<div class="main-img">
+	  					<%= image_tag item.picture_link, { class: "img-responsive center-block", alt: "placeholder image"}%>
+	  				</div>
+	        		<div class="fullname text-primary">
+	          			<%= item.fullname %>
+	        		</div>
+	        		<div class="room-types">
+	          			There are <%= item.room_types.count %> room types.
+	        		</div>
+				</div>
+		  	<% end %>
+		  	<div class="col-md-1">
+		  	</div>
+	  	</div>
+	<% end %>
+</div>
+</section>

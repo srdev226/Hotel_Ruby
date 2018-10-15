@@ -1,0 +1,142 @@
+<div class="container listing-show-container">
+  <div class="row">
+    <div class="col-md-2"></div>
+
+    <div class="col-md-8 listing-container">
+      <% if seller_signed_in? && current_user.id == @listing.user.id %>
+        <div class="edit-listing-header">
+          <h3 class="text-center">Here is your new listing <%= current_seller.first_name %>. Please confirm below.</h3>
+
+          <ul>
+            <li>Double-check your listing's details. Click "Edit" button below to fix any innacuracies.</li>
+            <strong><li>Click "Confirmed" below if you are ready to submit this listing.</li></strong>
+            <li>Once you click "Confirmed", we will notifiy the hotel and they will validate your listing in their system. Once this happens, your listing will be discoverable by potential buyers.</li>
+            <li>If any buyers purchase your listing, we will transfer the price into your account minus our 15% fee and change the name on your reservation to the buyer's name.</li>
+            <li>Please call <strong>808-555-1212</strong> or email <strong>vacancy.travel.us@gmail.com</strong> if you have any questions. Thanks!</li>
+
+          </ul>
+        </div>
+
+        <!-- EDIT BUTTON -->
+        <div class="text-center">
+          <%= link_to "Edit This Listing", edit_hginapa_listing_path, class: "btn btn-danger edit-listing-btn" %>
+        </div>
+
+      <% elsif @listing.purchased? == true %>
+
+        <h1>This listing has been sold.</h1>
+
+      <% else %>
+
+      <h1 class="text-center listing-header">Here is your available room at Hilton Garden Inn Napa</h1>
+
+      <% end %>
+          <div class="media">
+            <div class="listing-details">
+
+              <div class="col-md-5 col-sm-12 col-xs-12">
+                <%= render "room_images" %>
+              </div>
+
+              <div class="col-md-4 col-sm-12 col-xs-12">
+                  <%= render 'listing_details' %>
+              </div>
+            </div>
+
+            <div class="col-md-3 col-sm-12 col-xs-12 listing-price">
+
+              <h3 style="color:#FF4136;"><s>$599/night</s></h3>
+              <h3>$<%= @listing.price %><span>/night</span></h3>
+              <h3 style="color:#0074D9;"><%= number_to_percentage(((599 - @listing.price).to_f / 599)*100, precision: 0) %> off! </h3>
+              <div class="select">
+                <!--  <a class="btn btn-success btn-lg" href="#">View Details</a>   -->
+              <% if seller_signed_in? %>
+
+              <% elsif buyer_signed_in? %>
+
+                 <div id="paypal-button"></div>
+
+                  <script>
+                    paypal.Button.render({
+
+                        env: 'production', // Or 'sandbox'
+
+                        client: {
+                            sandbox:    'PbY7MCIZm7TF32yJM2u5OakzlHsNyKJbAoJDW6FwQNOShJJaNwib6eiWCVT1yCepwP8hzG',
+                            production: 'AdmT1qkCaHGvjoiGceyvsCYu6Ur0CPisbqJ4sN6Hza6LvMGFP2wMB4Do7ZbOuwUTUObE3DiPtcAW1Dpn'
+                        },
+
+                        commit: true, // Show a 'Pay Now' button
+
+                        payment: function(data, actions) {
+                            return actions.payment.create({
+                                transactions: [
+                                    {
+                                        amount: { total: '<%= @amount %>', currency: 'USD' }
+                                    }
+                                ]
+                            });
+                        },
+
+                        onAuthorize: function(data, actions) {
+                            actions.payment.execute().then(function(payment) {
+
+                                // The payment is complete!
+                                // You can now show a confirmation message to the customer
+
+
+                              var url = "<%= payment_confirmation_hginapa_listing_path(@listing) %>";
+                              window.location = url;
+
+                              // create a thank you page and pass the listing id
+
+                         //  fetch(url, {
+                        //   method: 'put'
+                        // }).then(function(response) {
+                        //   console.log(response);
+                        // }).catch(function(err) {
+                        //   console.log(err);
+                        // });
+                            });
+
+                        }
+
+                    }, '#paypal-button');
+                  </script>
+
+              <% elsif @listing.purchased == true %>
+
+              <% else %>
+
+                <%= link_to "Book this room", new_buyer_registration_path, class: "btn btn-success book-room-btn" %>
+
+                <p>Non-Refundable</p>
+              <% end %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+      <% if seller_signed_in? %>
+
+        <div class="text-center">
+          <%= link_to "Confirm Your Listing", approved_hginapa_listing_path, method: :patch, class: "btn btn-primary btn-lg " %>
+        </div>
+
+      <% elsif admin_signed_in? && @listing.confirmed_at == nil %>
+
+       <%= link_to "Home", hginapa_root_path, class: "btn btn-primary btn-home" %>
+
+       
+
+      <% else %>
+
+        <%= link_to "Home", hginapa_root_path, class: "btn btn-primary btn-home" %>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>

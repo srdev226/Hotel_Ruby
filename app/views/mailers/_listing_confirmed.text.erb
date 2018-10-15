@@ -1,0 +1,14 @@
+  - Hotel: Hilton Garden Inn Napa
+  <% unless buyer_switch %>
+  - Booking engine: <%= listing.booking_engine.type_%>
+  <% end %>
+  - <%= listing.room_type %>
+  - Check-in: <%= listing.check_in %>
+  - Check-out: <%= listing.check_out %>
+  - Created at: <%= listing.created_at%>
+  - Price: $<%= listing.price%>/night
+  - Confirmation number: <%= listing.confirmation_number%>
+  <% unless buyer_switch %>
+  - Name on reservation: <%= listing.name_on_reservation%>
+  - Paypal email: <%= listing.paypal_email %>
+  <% end %>

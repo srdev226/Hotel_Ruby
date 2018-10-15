@@ -1,0 +1,31 @@
+<h4 style="text-align: center"> Thank you for submitting your reservation to be sold on www.vacancytravel.com
+ </h4>
+
+<%= render 'layouts/spacer', height: '25px' %>
+
+<table class='row'>
+  <tbody>
+    <tr>
+      <h5>Your Reservation</h5>
+      <%= render 'mailers/listing_confirmed', listing: @listing, buyer_switch: false %>
+    </tr>
+  </tbody>
+</table>
+
+<%= render 'layouts/spacer', height: '25px' %>
+
+<table class='row'>
+  <tbody>
+    <tr>
+      <h5>Next Steps</h5>
+      <ul>
+        <li><p><strong>Validation</strong> - The hotel has been notified of the details of your reservation and will confirm that everything is valid.</p></li>
+        <li><p><strong>Confirmation</strong> - Once the reservation is confirmed you will receive an email indicating your listing is available for sale.</p></li>
+        <li><p><strong>Time Frame</strong>  - Please be aware that, depending on the time of day submitted it may take the hotel up to 12 hours to confirm the listing.</p></li>
+        <li><p><strong>Fees</strong> - Listing your reservation on Vacancy Travel is free of charge.  We charge a 15% marketing fee once your reservation sells.  This will be deducted from your total sale of the reservation. This allows us to market your reservation throughout the internet and on our social media channels and increase the probability you will find a buyer.</p></li>
+        <li><p><strong>Help</strong> - If you have any questions or concerns, please contact us at either help@vacancytravel.com or by phone at (415) 500-5018.</p></li>
+      </ul>
+    </tr>
+  </tbody>
+</table>
+

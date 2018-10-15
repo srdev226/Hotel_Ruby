@@ -1,0 +1,20 @@
+<div class="container">
+  <h1>Confirm and Switch Listing Checklist</h1>
+
+    <ul class="nav nav-tabs" role="tablist" id="tabs">
+      <% Listing.status_list.each do |status| %>
+        <li role="presentation" <%= 'class=active' if status == 'pending_confirmation' %>>
+          <a href="#<%= status %>" aria-controls="<%= status %>" role="tab" data-toggle="tab">
+            <%= I18n.t("tab_titles.listings.#{status}") %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+
+    <div class="tab-content">
+      <% Listing.status_list.each do |status| %>
+        <%= render 'tab_panel', listings: @listings[status.to_sym], active: status == 'pending_confirmation', status: status %>
+      <% end %>
+    </div>
+</div>
+

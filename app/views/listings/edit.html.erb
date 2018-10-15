@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 edit-container">
+      <h3 class="text-center">Here is your listing.</h3>
+      <h4>Click "Save Changes" if details are accurate or "Delete Listing."</h4>
+      <% unless @listing.confirmed_at.nil? %>
+        <h4>This listing is already confirmed, you can only change the price. </h4>
+      <% end %>
+      <div class="edit-listing-form">
+        <%= render 'form'  %>
+      </div>
+    </div>
+  </div>
+</div>

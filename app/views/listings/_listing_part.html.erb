@@ -1,0 +1,91 @@
+<% listings.each do |listing| %>
+  <div class="media">
+    <div class="listing-details">
+
+      <div class="col-md-4 col-sm-4 col-xs-4">
+        <%#= render "room_images" %>
+        <a href="#">
+          <%= image_tag listing.room_type.picture_link, { class: "img-responsive room-img center-block", alt: "placeholder image"}%>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-sm-6 col-xs-6">
+          <%= render 'listing_details', :listing => listing %>
+      </div>
+    </div>
+
+    <div class="col-md-2 col-sm-2 col-xs-2 listing-price">
+
+      <h3 style="color:#FF4136;"><s>$599/night</s></h3>
+      <h3>$<%= listing.price %><span>/night</span></h3>
+      <h3 style="color:#0074D9;"><%= number_to_percentage(((599 - listing.price).to_f / 599)*100, precision: 0) %> off! </h3>
+      <div class="select">
+        <!--  <a class="btn btn-success btn-lg" href="#">View Details</a>   -->
+      <% if seller_signed_in? %>
+
+      <% elsif buyer_signed_in? %>
+
+         <div id="paypal-button"></div>
+
+          <script>
+            paypal.Button.render({
+
+                env: 'production', // Or 'sandbox'
+
+                client: {
+                    sandbox:    'PbY7MCIZm7TF32yJM2u5OakzlHsNyKJbAoJDW6FwQNOShJJaNwib6eiWCVT1yCepwP8hzG',
+                    production: 'AdmT1qkCaHGvjoiGceyvsCYu6Ur0CPisbqJ4sN6Hza6LvMGFP2wMB4Do7ZbOuwUTUObE3DiPtcAW1Dpn'
+                },
+
+                commit: true, // Show a 'Pay Now' button
+
+                payment: function(data, actions) {
+                    return actions.payment.create({
+                        transactions: [
+                            {
+                                amount: { total: '<%= @amount %>', currency: 'USD' }
+                            }
+                        ]
+                    });
+                },
+
+                onAuthorize: function(data, actions) {
+                    actions.payment.execute().then(function(payment) {
+
+                        // The payment is complete!
+                        // You can now show a confirmation message to the customer
+
+
+                      var url = "<%= payment_confirmation_listing_path(listing) %>";
+                      window.location = url;
+
+                      // create a thank you page and pass the listing id
+
+                 //  fetch(url, {
+                //   method: 'put'
+                // }).then(function(response) {
+                //   console.log(response);
+                // }).catch(function(err) {
+                //   console.log(err);
+                // });
+                    });
+
+                }
+
+            }, '#paypal-button');
+          </script>
+
+      <% elsif listing.purchased == true %>
+
+      <% else %>
+
+        <%= link_to "Book this room", new_buyer_registration_path, class: "btn btn-success book-room-btn" %>
+
+        <p>Non-Refundable</p>
+      <% end %>
+
+      </div>
+
+    </div>
+  </div>
+<% end %>

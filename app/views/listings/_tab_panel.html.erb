@@ -1,0 +1,7 @@
+<div role="tabpanel" class="tab-pane fade <%= 'in active' if active %>" id=<%= status %>>
+  <% if listings %>
+    <%= render partial: 'admin_listing', collection: listings, as: :listing %>
+  <% else %>
+    <h2 class='listings-placeholder'> No listings here. </h2>
+  <% end %>
+</div>

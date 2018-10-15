@@ -1,0 +1,21 @@
+<table class='row'>
+  <tbody>
+    <tr>
+      <p>
+        Thank you for confirming the reservation details.  This listing is now posted at www.vacancytravel.com and can booked at any time.  If the guest has any questions regarding this posting please have them contact us at either help@vacancytravel.com or (415) 500-5018.  When this reservation is booked you will receive an email that will direct you to the details for the guest that has purchased this reservation.
+      </p>
+    </tr>
+  </tbody>
+</table>
+
+<%= render 'layouts/spacer', height: '25px' %>
+
+<table class='row'>
+  <tbody>
+    <tr>
+      <h5>Reservation Details</h5>
+      <%= render 'mailers/listing_confirmed', listing: @listing, buyer_switch: false %>
+    </tr>
+  </tbody>
+</table>
+

@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-2"></div>
+
+    <div class="col-md-8">
+
+      <h3 class="text-center">Congrats on your purchase <%= current_user.first_name %>! Here are the details and next steps.</h3>
+
+          <div class="media">
+            <div class="col-md-5 col-sm-12 col-xs-12">
+              <%= render "room_images" %>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+              <%= render 'listing_details' %>
+            </div>
+            <div class="col-md-3 col-sm-12 col-xs-12 listing-price">
+                <h3 style="color:#FF4136;"><s>$599/night</s></h3>
+              <h3>$<%= @listing.price %><span>/night</span></h3>
+              <h3 style="color:#0074D9;"><%= number_to_percentage(((599 - @listing.price).to_f / 599)*100, precision: 0) %> off! </h3>
+            </div>
+          </div>
+          <h4>Here is what happens next: The hotel has been notified, and the reservation will be changed to your name. When this happens, you will receive a notification email.</h4>
+    </div>
+</div>

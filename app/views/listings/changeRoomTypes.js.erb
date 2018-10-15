@@ -1,0 +1,6 @@
+<label for="exampleInputPassword1">Room Type?</label>
+<% if @room_types.present? %>
+	<%= select_tag "listing[room_type_id]", options_for_select(@room_types.map{ |t| [t.type_, t.id] }), class: "form-control" %>
+<% else %>
+    <%= select_tag "listing[room_type_id]", '' %>
+<% end %>

@@ -1,0 +1,31 @@
+<h4 style="text-align: center"> The reservation has been changed into your name and you’re all set for your stay at the
+Hilton Garden Inn Napa.
+
+ </h4>
+
+<%= render 'layouts/spacer', height: '25px' %>
+
+<table class='row'>
+  <tbody>
+    <tr>
+      <h5>Your Reservation</h5>
+      <%= render 'mailers/listing_confirmed', listing: @listing, buyer_switch: true %>
+    </tr>
+  </tbody>
+</table>
+
+<%= render 'layouts/spacer', height: '25px' %>
+
+<table class='row'>
+  <tbody>
+    <tr>
+      <h5>Next Steps</h5>
+      <ul>
+        <li><p><strong>Confirmation</strong> - The confirmation details of your reservation are attached to this email.  Please use the confirmation number and your last name at check-in</p></li>
+        <li><p><strong>Guarantee</strong> - Because we work with hotel directly, we are absolutely confident your experience will be as cool as the other side of pillow. If however something should come up at any point during your check-in process, we will make it right or rebook you a room at 100% our cost.</p></li>
+        <li><p><strong>Help</strong> - If you have any issues with check-in or during your stay contact us at help@vacancytravel.com or by phone (415) 500-5018</p></li>
+      </ul>
+    </tr>
+  </tbody>
+</table>
+

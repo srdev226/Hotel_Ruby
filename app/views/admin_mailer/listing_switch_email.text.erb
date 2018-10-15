@@ -1,0 +1,21 @@
+Reservation Switched
+
+Hilton Garden Inn Napa
+
+<%= @listing.room_type%>
+
+Check-in: <%= @listing.check_in %>
+Check-out: <%= @listing.check_out %>
+
+<% if @buyer %>
+Buyer:
+
+  - Name: <%= @buyer.first_name%> <%= @buyer.last_name%>
+  - Email: <%= @buyer.email%>
+<% end %>
+
+Seller:
+  - Name: <%= @seller.first_name%> <%= @seller.last_name%>
+  - Email: <%= @seller.email%>
+
+Confirmation number: <%= @listing.confirmation_number%>

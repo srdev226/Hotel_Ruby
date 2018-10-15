@@ -1,0 +1,21 @@
+A guest has posted a non-refundable reservation on www.vacancytravel.com.
+
+Reservation Details
+
+<%= render 'mailers/listing_confirmed', listing: @listing, buyer_switch: false %>
+
+Seller Information
+
+<%= render 'mailers/seller_info', seller: @listing.user %>
+
+Next Steps
+
+Login - Login in to the Admin Dashboard at <a href="https://www.vacancytravel.com/hginapa">VacancyTravel.com</a> with the Admin login you were provided during training.  If you need help finding that info please email us at sales@vacancytravel.com
+
+Confirm - Find the listing matching details from this email. Click the CONFIRMED link (listing valid – per hotel records) if all the reservation details are correct.
+
+Listings - All listings that need to be confirmed will be listed on the Confirmation Pending tab.
+
+Fraud - If any of the info is incorrect or you believe there may be fraudulent activity, please click the “Delete Listing” red button at the bottom of the reservation.  The listing will be deleted from our system and the guest will be notified that their reservation will not be posted.
+
+Help - If the guest calls with any questions or concerns, please have them contact us at either help@vacancytravel.com or by phone at (415)500-5018

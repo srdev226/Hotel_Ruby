@@ -1,0 +1,113 @@
+<section id="listings">
+	<div class="container">
+		<div class="row top-buffer">
+			<div class="col-md-11 col-md-offset-1">
+					<% if defined? @hotel %>
+          <h4 class="top-buffer text-center" style="margin-bottom: -10px;">Top Deals at <span class="text-primary"><%= @hotel.fullname %></span></h4>
+          
+					<% else %>
+						<h4 class="text-primary top-buffer">Top Deals</h4>
+					<% end %>
+			</div>
+		</div>
+		<% if defined? @hotel %>
+			<% @listings.each do |item| %>
+				<div class="row">
+					<% @listing = Listing.find(item.id) %>
+					<%= render :template => 'listings/show', :locals => {:listing => @listing} %>
+					<%#= render 'listing_part', :listing => @item %>
+					<%#= render 'listing_part', :listings => @listings %>
+				</div>
+			<% end %>
+		<% else %>
+			<% @listings.in_groups_of(5, false).each do |listing| %>
+				<div class="row">
+			  		<div class="col-md-1">
+			  		</div>
+			  		<% listing.each do |item| %>
+			  			<div class="col-md-2 col-xs-6 col-sm-6 listing">
+			  				<div class="main-img">
+			  					<%= image_tag item.room_type.picture_link, { class: "img-responsive center-block", alt: "placeholder image"}%>
+			  				</div>
+			        		<div class="hotel text-primary">
+			          			<%= item.hotel.fullname %>
+			        		</div>
+			        		<div class="room-type text-warning">
+			          			<%= item.room_type.type_ %>
+			        		</div>
+                  <div class="room-type text-warning">
+                    Check-In: <%= item.check_in %>
+                  </div>
+                  <div class="room-type text-warning">
+                    Check-Out: <%= item.check_out %>
+                  </div>
+			        		<div class="price text-danger">
+			          			$<%= item.price%> <span style="color: red; margin-left: 10px;"><%= number_to_percentage(((599 - item.price).to_f / 599)*100, precision: 0) %> off!</span>
+			        		</div>
+                  
+                  <% if user_signed_in? %>
+			        	    <% unless @my_listing.include? item.id %>
+                       <div id="paypal-button-<%= item.id %>"></div>
+
+                        <script>
+                          paypal.Button.render({
+
+                              env: 'production', // Or 'sandbox'
+
+                              client: {
+                                  sandbox:    'PbY7MCIZm7TF32yJM2u5OakzlHsNyKJbAoJDW6FwQNOShJJaNwib6eiWCVT1yCepwP8hzG',
+                                  production: 'AdmT1qkCaHGvjoiGceyvsCYu6Ur0CPisbqJ4sN6Hza6LvMGFP2wMB4Do7ZbOuwUTUObE3DiPtcAW1Dpn'
+                              },
+
+                              commit: true, // Show a 'Pay Now' button
+
+                              payment: function(data, actions) {
+                                  return actions.payment.create({
+                                      transactions: [
+                                          {
+                                              amount: { total: '<%= item.total_cost %>', currency: 'USD' }
+                                          }
+                                      ]
+                                  });
+                              },
+
+                              onAuthorize: function(data, actions) {
+                                  actions.payment.execute().then(function(payment) {
+
+                                      // The payment is complete!
+                                      // You can now show a confirmation message to the customer
+
+
+                                    var url = "<%= payment_confirmation_listing_path(item.id) %>";
+                                    window.location = url;
+
+                                    // create a thank you page and pass the listing id
+
+                               //  fetch(url, {
+                              //   method: 'put'
+                              // }).then(function(response) {
+                              //   console.log(response);
+                              // }).catch(function(err) {
+                              //   console.log(err);
+                              // });
+                                  });
+
+                              }
+
+                          }, '#paypal-button-<%= item.id %>');
+                        </script>
+
+                    
+                    <% end %>
+                  <% else %>
+                    <%= link_to "Book this room", new_user_registration_path(booking: item.id), class: "btn btn-success book-room-btn" %>
+                  <% end %>
+						</div>
+				  	<% end %>
+				  	<div class="col-md-1">
+				  	</div>
+			  	</div>
+			<% end %>
+		<% end %>
+	</div>
+</section>

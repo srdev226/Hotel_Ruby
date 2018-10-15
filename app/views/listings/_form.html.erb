@@ -1,0 +1,104 @@
+
+    <%= form_for [@listing] do |f| %>
+
+        <% if @listing.new_record? %>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Which hotel do you want?</label>
+            <%#= f.select :hotel, options_for_select(@hotels.map{ |h| [h.fullname, h.shortname, {'data-id' => h.id}] }), {}, class: "form-control" %>
+            <%= f.select :hotel_id, options_for_select(@hotels.map{ |h| [h.fullname, h.id] }), {}, class: "form-control" %>
+          </div>
+        <% end %>
+
+        <% if @listing.confirmed_at.nil? %>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Where did you book this reservation?</label>
+            <%= f.select :booking_engine_id, options_for_select(@booking_engines.map{ |b| [b.type_, b.id] }, @listing.booking_engine_id), {}, class: "form-control" %>
+          </div>
+          <!-- datepicker check-in -->
+          <div id="dp">
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker6'>
+                     <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    <%= f.text_field :check_in, required: true,class: 'form-control', placeholder: "Check-in" %>
+                </div>
+            </div>
+
+            <!-- datepicker check-out -->
+
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker7'>
+                     <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                     <%= f.text_field :check_out,required: true, class: 'form-control', placeholder: "Check-out" %>
+
+                </div>
+            </div>
+          </div>
+          <div class="form-group room_types">
+            <label for="exampleInputPassword1">Room Type?</label>
+            <%= f.select :room_type_id, options_for_select(@room_types.map{ |t| [t.type_, t.id] }, @listing.room_type_id), {}, class: "form-control" %>
+          </div>
+        <% end %>
+
+        <% if @listing.new_record? %>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Was this Pre-Paid?</label>
+            <%= f.select :paid_status, options_for_select(["Pre-Paid","Not Pre-Paid"]), {}, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+              <label for="exampleInputPassword1">Confirmation Number?</label>
+              <%= f.text_field :confirmation_number, required: true, class: 'form-control', placeholder: "Confirmation Number " %>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputPassword1">Exact Name On Reservation</label>
+            <%= f.text_field :name_on_reservation, required: true, class: 'form-control', placeholder: "First and Last" %>
+          </div>
+        <% end %>
+
+        <div class="form-group">
+          <div class="input-group">
+              <span class="input-group-addon">$</span>
+          <%= f.text_field :price, required: true, class: 'form-control', placeholder: "Price Selling For " %>
+          </div>
+          <small id="emailHelp" class="form-text text-muted">List your price per night here. Make sure your price is competitive to ensure it will sell! There is a 15% platform fee from VacancyTravel when your room sells.</small>
+        </div>
+
+        <% if @listing.new_record? %>
+          <div class="form-group">
+              <label for="exampleInputPassword1">PayPal Email Address</label>
+              <%= f.text_field :paypal_email, required: true, class: 'form-control', placeholder: "Email" %>
+              <small id="emailHelp" class="form-text text-muted">Include your PayPal email address so we can pay you when your reservation sells!</small>
+          </div>
+
+          <% if admin_signed_in? %>  
+            <div class="form-group">
+                <label for="exampleInputPassword1">Seller Phone Number</label>
+                <%= f.text_field :seller_phone, required: true, class: 'form-control', placeholder: "555-555-5555" %>
+                <small id="emailHelp" class="form-text text-muted">Please input seller phone number so we can reach them if needed.</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Seller's Contact Email</label>
+                <%= f.text_field :seller_contact_email, required: true, class: 'form-control', placeholder: "seller@email.com" %>
+                <small id="emailHelp" class="form-text text-muted">Please input seller's contact email address so we can reach them if needed.</small>
+            </div>
+          <% end %>  
+
+          <div class="post_button">
+            <%= f.submit "Post", class: "btn btn-success" %>
+          </div>
+        <% else %>
+          <div class="post-button">
+            <%= f.submit "Save Changes", class: "btn btn-primary" %>
+          </div>
+          <%= link_to "Delete This Listing", listing_path(@listing), method: :delete,
+            data: { confirm: "Are you sure?"} %>
+        <% end %>
+
+    <% end %>
+
+    <%= link_to "Back", :back %>

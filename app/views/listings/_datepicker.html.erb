@@ -1,0 +1,49 @@
+
+
+    <!-- datepicker check-in -->
+
+    <div class="row" id="dp">
+     <div class="container">
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker6'>
+                    <input type='text' class="form-control" placeholder="Check-in date"/>
+
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+
+  <!-- datepicker check-out -->
+
+              <div class="form-group">
+                  <div class='input-group date' id='datetimepicker7'>
+                       <input type='text' class="form-control" placeholder="Check-out date"/>
+
+                      <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                  </div>
+              </div>
+    </div>
+    </div>
+
+  <!-- Javascript for datepickers -->
+
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker6').datetimepicker({
+              format: 'L'
+            });
+            $('#datetimepicker7').datetimepicker({
+                format: 'L',
+                useCurrent: false //Important! See issue #1075
+            });
+            $("#datetimepicker6").on("dp.change", function (e) {
+                $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+            });
+            $("#datetimepicker7").on("dp.change", function (e) {
+                $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+            });
+        });
+    </script>

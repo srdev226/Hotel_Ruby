@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VacancyTravel</title>
+    
+    <% unless controller.controller_name == "listings" && controller.action_name == "index" %>
+      <%= stylesheet_link_tag    'layout', media: 'all', 'data-turbolinks-track' => true %>
+    <% else %>
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <% end %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <meta name="google-site-verification" content="NYqxRu4XR1jQnGIoZMkzdKcnQRpB07PdsvmVtbBpGEA" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113943648-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-113943648-1');
+    </script>
+
+  </head>
+
+  <body>
+
+    <!-- navbar -->
+
+    <%= render 'layouts/navbar' %>
+    <% unless controller.controller_name == "listings" && controller.action_name == "index" %>
+      <%= render 'layouts/messages' %>
+    <% end %>
+
+    <!-- all other views -->
+    <div id='main-container'>
+      <%= yield %>
+    </div>
+
+    <!-- footer -->
+
+    <%= render 'layouts/footer' %>
+  </body>
+</html>
+
+
+
+
+
+

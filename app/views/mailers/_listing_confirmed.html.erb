@@ -1,0 +1,16 @@
+<ul>
+  <li><p>Hotel: Hilton Garden Inn Napa</p></li>
+  <% unless buyer_switch %>
+    <li><p>Booking engine: <%= listing.booking_engine.type_%></p></li>
+  <% end %>
+  <li><p><%= listing.room_type %></p></li>
+  <li><p>Check-in: <%= listing.check_in %></p></li>
+  <li><p>Check-out: <%= listing.check_out %></p></li>
+  <li><p>Created at: <%= listing.created_at%></p></li>
+  <li><p>Price: $<%= listing.price%><span>/night</span></p></li>
+  <li><p>Confirmation number: <%= listing.confirmation_number%></p></li>
+  <% unless buyer_switch %>
+    <li><p>Name on reservation: <%= listing.name_on_reservation%></p></li>
+    <li><p>Paypal email: <%= listing.paypal_email %></p></li>
+  <% end %>
+</ul>

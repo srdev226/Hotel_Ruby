@@ -1,0 +1,107 @@
+
+<!-- Navigation -->
+
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- <div class="container"> -->
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- <a class="navbar-brand" id="logo" href="#">RoomHub</a> -->
+        <%= link_to 'VacancyTravel', root_path, class: "navbar-brand", id: "logo" %>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-left">
+          <li id="navtext"><%= link_to "Sell your reservation", new_user_registration_path %></li>
+          <li id="navtext"><a href="#" data-toggle="modal" data-target="#100Modal">100% gurantee</a></li>
+          <li id="navtext"><a href="/">FAQ</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          
+        <% if admin_signed_in? %>
+          <% if current_admin.admin? %>
+            <li class="nav-item" id="navtext">
+              <%= link_to "Manage Users", users_path %>
+            </li>
+           <% end %>  
+            <li class="nav-item" id="navtext">
+              <%= link_to "Admin Create Listing", new_listing_path %>
+            </li> 
+            <li class="nav-item" id="navtext">
+              <%= link_to "Admin Dashboard", admin_path %>
+            </li>
+            
+          
+        <% elsif user_signed_in? %>
+            <li class="nav-item" id="navtext">
+              <%= link_to "View your listings", user_path(current_user) %>
+            </li>
+        <% end %>
+
+
+
+<!-- contact  -->
+        <li class="nav-item" id="navtext">
+          <%= link_to 'Contact Us', contact_path %>
+        </li>
+
+<!-- test -->
+        <% unless user_signed_in? %>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign In<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <% unless user_signed_in? || admin_signed_in? %>
+                    <li><%= link_to 'User', new_user_session_path %></li>
+                    <li id="admin_nav_link"><%= link_to 'Admin', admin_path %></li>
+                <% end %>
+            </ul>
+          </li>
+
+        <% end %>
+<!-- test -->
+        <li class="nav-item" id="navtext">
+
+          <% if user_signed_in? %>
+            <%= link_to 'Sign Out', destroy_user_session_path, method: "delete" %>
+          <% elsif admin_signed_in? %>
+            <%= link_to 'Sign Out', destroy_admin_session_path, method: "delete" %>
+          <% end %>
+        </li>
+
+        <% unless admin_signed_in? %>
+          <% if user_signed_in? %>
+            <li class="nav-item" id="navtext">
+              <span>Welcome <%= current_user.first_name %></span>
+            </li>
+          <% end %>
+        <% end %>
+
+         <!--  <li>
+            <span>
+            <div id="TA_socialButtonIcon526" class="TA_socialButtonIcon">
+              <div id="OhmQFSb2JBe" class="TA_links cZzdVjK80Y">
+                <div id="MmgXdBgKD" class="ym0ePs">
+                  <a target="_blank" href="https://www.tripadvisor.com/Hotel_Review-g32766-d235440-Reviews-Hilton_Garden_Inn_Napa-Napa_Napa_Valley_California.html"><img src="https://www.tripadvisor.com/img/cdsi/img2/branding/socialWidget/20x28_green-21690-2.png"/></a>
+                </div>
+              </div>
+            </div>
+              <script src="https://www.jscache.com/wejs?wtype=socialButtonIcon&amp;uniq=526&amp;locationId=235440&amp;color=green&amp;size=rect&amp;lang=en_US&amp;display_version=2"></script>
+            </span>
+          </li> -->
+
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    <!-- </div> -->
+    <!-- /.container -->
+  </nav>
+
+
+<!-- render modals -->
+<%= render 'layouts/modals' %>

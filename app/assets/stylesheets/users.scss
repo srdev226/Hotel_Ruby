@@ -1,0 +1,528 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'bootstrap-datetimepicker';
+@import 'font-awesome';
+
+html {
+    min-height:100%;
+    height:100%;
+}
+
+body {
+    min-height: calc(100% - 50px) !important;
+    height: calc(100% - 50px) !important;
+}
+
+#main-container {
+    min-height: calc(100% - 45px);
+}
+
+.switched {
+    color: red;
+}
+
+@media screen and (max-width: 500px) {
+    .listing-table {
+        height: 90px;
+    }
+
+    .edit-listing-header {
+        padding: 0 20px 0;
+    }
+
+    .listing-details {
+        padding: 0 20px 0;
+    }
+
+    .info {
+        padding: 0 0 10px 0;
+        margin: 0 15px;
+        border-bottom: 1px solid lightgray;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    #logo {
+        font-size: 12px;
+    }
+}
+
+@media screen and (min-width: 390px) and (max-width: 430px) {
+    #logo {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+    /*
+    .navbar-collapse.navbar-right.collapse {
+        display: none !important;
+    }
+
+    .navbar-header {
+        width: 100%;
+    }
+
+    .navbar-toggle {
+        display: block !important;
+    }
+
+    .navbar-collapse.navbar-left.collapse.in {
+        display: block !important;
+    }
+
+    .navbar-collapse.navbar-right.collapse.in {
+        display: block !important;
+    }
+    */
+}
+
+#item-1 {
+    background-image: url(/oak.jpg);
+}
+
+#item-2 {
+    background-image: url('https://www.arcata-eurekahiexpress.com/wp-content/gallery/home/header_home3.jpg');
+}
+
+#item-3 {
+    background-image: url(/sunset.jpg);
+}
+
+.banner-container {
+    height: 300px;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+@media screen and (max-width: 767px) {
+    .banner-container {
+        height: 250px;
+    }
+}
+
+body {
+    margin-top: 50px !important; /* Required margin for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+#banners{
+    opacity: 0.85;
+}
+
+.navbar {
+    background-color: #274060 !important;
+    border: none;
+    padding: 0 30px;
+}
+
+/* Remove fixed status */
+.navbar-fixed-top {
+    position: absolute;
+}
+
+.navbar-inverse button.navbar-toggle {
+    border-color: #A4ABB0;
+}
+
+.navbar-inverse button.navbar-toggle:focus {
+    background-color: transparent;
+}
+
+#logo{
+    color: white;
+    margin-bottom: 5px;
+}
+
+/* welcome message on navbar */
+#navtext {
+    a {
+        color: white;
+    }
+    span {
+        color: white;
+        padding: 15px;
+        line-height: 20px;
+        display:block;
+    }
+}
+#navtext a:hover {
+    color: #7FDBFF;
+}
+
+#TA_socialButtonIcon526{
+    padding-top: 15px;
+}
+
+/* datepicker */
+
+#dp{
+    margin-top: 25px;
+}
+
+/* listings */
+
+#list{
+    margin-top: 5px;
+}
+
+
+.media {
+    border-top: 2px solid #e8e8e8;
+    border-bottom: 2px solid #e8e8e8;
+    padding-top: 5px;
+    margin-bottom: 10px;
+}
+
+.admin {
+    border-top: 2px solid #e8e8e8;
+    border-bottom: 2px solid #e8e8e8;
+}
+
+.select{
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.btn-home {
+    margin-left: 10px;
+}
+
+.btn.btn-new-listing {
+    font-size: 16px;
+}
+
+#banners {
+  width: 100%;
+  height: 315px;
+}
+
+/* How to section */
+
+#how{
+    margin-top: 20px;
+    border-right: 2px solid #e8e8e8;
+    border-top: 2px solid #e8e8e8;
+    border-left: 2px solid #e8e8e8;
+    border-bottom: 2px solid #e8e8e8;
+    margin-bottom: 20px;
+}
+
+#book {
+    border-right: 2px solid #e8e8e8;
+}
+
+#sell {
+    border-right: 2px solid #e8e8e8;
+}
+
+.footer {
+    margin-top: 30px;
+    background-color: #274060;
+    width: 100%;
+}
+
+.copyright {
+    padding-top: 15px;
+    color: white;
+}
+
+.phone {
+    padding-top: 15px;
+    float: right;
+    a {
+        color: white;
+    }
+}
+
+ /* contact page */
+
+.img-thumbnail {
+    border-radius: 50%;
+}
+
+ #contactBox {
+    text-align: center;
+
+ }
+
+/* listings */
+
+#med {
+    margin-bottom: 30px;
+}
+
+#med:hover{
+    background-color: #e8e8e8 !important;
+}
+
+#userShow{
+    margin-top: 50px !important;
+    padding-left: 0;
+    padding-right: 0;
+    .header {
+        padding-left: 10px;
+    }
+}
+
+.listing-price {
+    text-align: center;
+}
+
+.listing-room-type {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.listing-container {
+    margin-top: 20px;
+}
+
+.container.listing-show-container {
+    width: 100%;
+}
+
+.room-img {
+    margin-bottom: 10px;
+}
+
+.room-details {
+    padding-left: 17px;
+}
+
+.btn.book-room-btn {
+    margin-bottom: 10px;
+}
+
+.edit-container {
+    margin-top: 50px;
+}
+
+.edit-listing-form {
+    margin-top: 20px;
+}
+
+.post-button {
+    margin-bottom: 10px;
+}
+
+.listing-header {
+    margin-bottom: 20px;
+}
+
+.btn.edit-listing-btn {
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.listing-dates {
+    margin-bottom: 20px;
+}
+
+.new-listing-header {
+    margin-bottom: 30px;
+}
+
+.new-listing-btn {
+    float: right;
+    padding-bottom: 15px;
+}
+
+.confirm-btn {
+    padding-bottom: 15px;
+}
+
+/*FAQ*/
+
+    .faqHeader {
+        font-size: 27px;
+        margin: 20px;
+    }
+
+    .panel-heading [data-toggle="collapse"]:after {
+        font-family: 'Glyphicons Halflings';
+        content: "\e072"; /* "play" icon */
+        float: right;
+        color: #F58723;
+        font-size: 18px;
+        line-height: 22px;
+        /* rotate "play" icon from > (right arrow) to down arrow */
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
+
+    .panel-heading [data-toggle="collapse"].collapsed:after {
+        /* rotate "play" icon from > (right arrow) to ^ (up arrow) */
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+        color: #454444;
+    }
+
+/*flash*/
+
+.alert-error {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: left;
+ }
+
+.alert-alert {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: left;
+ }
+
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+    text-align: left;
+ }
+
+.alert-notice {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+    text-align: left;
+ }
+
+/* testimonials   */
+
+.rounded-circle {
+    border-radius: 50%;
+    height: 80px;
+}
+
+/* user list */
+
+table.user-list {
+    td {
+        vertical-align: middle !important;
+    }
+}
+
+/* 
+ ================
+    Listing
+ ================
+ */
+
+.listing {
+    .main-img {
+        border-radius: 4px;
+        box-shadow: 0 2px 1px 0 #ccc;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 3px;
+    }
+
+    img {
+        width: 100%;
+    }
+
+}
+
+/* 
+ ================
+    Header
+ ================
+ */
+
+/* make header 70% of screen */
+header {
+    height: calc(80vh - 55px);
+}
+
+.carousel {
+    height: 100%;
+    .carousel-inner {
+        height: 100%;
+        .item {
+            height: 100%;
+        }
+    }
+}
+
+ // ==== searchbar ====
+ .select2-container--bootstrap .select2-selection {
+   border: none !important;
+ }
+ .searchbar {
+    width: 100%;
+    height: 150px;
+    position: absolute;
+    top: calc(50% - 75px);
+    .container {
+        @media (min-width: 769px) {
+            padding-left: 250px;
+            padding-right: 250px;
+        }
+
+        @media (max-width: 768px) {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        h3 {
+            color: white;
+            text-align: center;
+        }
+        .fields {
+            /* Make search bar like roomertravel.com */
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+
+            .input-group {
+                height: 50px;
+                .input-group-addon {
+                    border: 0;
+                    background: white;
+                    i {
+                        font-size: 24px;
+                    }
+                }
+                .form-control {
+                    border: 0;
+                    box-shadow: 0 0;
+                    height: 50px;
+                }
+            }
+            .select2-container {
+                padding-top: 6px;
+                padding-bottom: 6px;
+            }
+            .select2-container .select2-selection--single {
+                height: 38px;
+                width: 100% !important;
+            }
+            .search-field {
+                padding: 0;
+                .search-btn {
+                    height: 50px;
+                    color: white;
+                    background-color: #009bff;
+                    font-size: 16px;
+                    border: 0;
+                }
+            }
+        }
+    }
+ }
+
+.alert {
+    margin-bottom: 0;
+}

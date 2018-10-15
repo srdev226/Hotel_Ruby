@@ -1,0 +1,64 @@
+
+<div class="container" >
+  <div class="jumbotron" id="userShow">
+      <div class="header">
+        <h2><%= @listings_title %></h2>
+        <p>Click on the Edit button below to change or delete a listing:</p>
+      </div>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Check-In-Date: </th>
+              <th>Check-Out-Date: </th>
+              <th>Hotel:</th>
+              <th>Room Type: </th>
+              <th>Sale Price: </th>
+              <th>Booking Engine: </th>
+              <th>Date Listing Created: </th>
+              <th>Date:</th>
+              <th>Status:</th>
+              <th>Paid Status: </th>
+              <th>Action:</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @listings.each do | hotel_id, listings_each | %>
+          <% listings_each.each do | listing | %>
+            <tr>
+              <td><%= listing.check_in %></td>
+              <td><%= listing.check_out%></td>
+              <td class="text-primary"><%= listing.hotel.shortname%></td>
+              <td><%= truncate(listing.room_type.type_, :length => 20, :escape => false, :separator => ' ') %></td>
+              <td>$<%= listing.price %>.00</td>
+              <td><%= listing.booking_engine.type_ %></td>
+              <td><%= listing.created_at.strftime("%m/%d/%Y %H:%M:%S") %></td>
+              <% if listing.confirmed_at.present? %>
+                <td><%= listing.confirmed_at%></td>
+                <td><span class="badge badge-success">Confirmed</span></td>
+              <% elsif listing.switched_at.present? %>
+                <td><%= listing.switched_at%></td>
+                <td><span class="badge badge-primary">Switched</span></td>
+              <% else %>
+                <td></td>
+                <td></td>
+              <% end %>
+              <td><%= listing.paid_status%></td>
+              <td>
+                <%= link_to "Edit", edit_listing_path(listing) %> | 
+                <%= link_to "Show", listing_path(listing) %>
+                <%#= link_to "Delete", listing_path(listing), method: :delete, data: { confirm: "Are you sure?"} %>
+              </td>
+            </tr>
+          <% end %>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+
+  </div>
+
+  <div class="new-listing-btn">
+    <%= link_to "Create Another Listing", new_listing_path, class: "btn btn-success btn-new-listing" %>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hotel: MyString
+  bookingengine: MyString
+  check_in_date: MyString
+  check_out_date: MyString
+  room_type: MyString
+  price: MyString
+
+two:
+  hotel: MyString
+  bookingengine: MyString
+  check_in_date: MyString
+  check_out_date: MyString
+  room_type: MyString
+  price: MyString

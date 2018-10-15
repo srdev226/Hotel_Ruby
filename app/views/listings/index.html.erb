@@ -1,0 +1,102 @@
+    <header>
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" >
+          <!-- Indicators
+          <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+          </ol>  -->
+
+          <!-- Wrapper for slides -->
+          <% if params[:hotel] == "mck" %>
+          <div class="carousel-inner">
+            <div class="item active banner-container" id="item-4">
+              <!-- <div class="carousel-caption" id="caption">
+                <h1>VacancyTravel - Hilton Garden Inn Napa</h1>
+                <h3>3585 Solano Ave, Napa, CA</h3>
+              </div> -->
+            </div>
+          </div>
+          <% elsif params[:hotel] == "hginapa" %>
+          <div class="carousel-inner">
+            <div class="item active banner-container" id="item-5">
+              <!-- <div class="carousel-caption" id="caption">
+                <h1>VacancyTravel - Hilton Garden Inn Napa</h1>
+                <h3>3585 Solano Ave, Napa, CA</h3>
+              </div> -->
+            </div>
+          </div>
+          <% elsif params[:hotel] == "cmi" %>
+          <div class="carousel-inner">
+            <div class="item active banner-container" id="item-6">
+              <!-- <div class="carousel-caption" id="caption">
+                <h1>VacancyTravel - Hilton Garden Inn Napa</h1>
+                <h3>3585 Solano Ave, Napa, CA</h3>
+              </div> -->
+            </div>
+          </div>
+          <% else %>
+          <div class="carousel-inner">
+            <div class="item active banner-container" id="item-1">
+              <!-- <div class="carousel-caption" id="caption">
+                <h1>VacancyTravel - Hilton Garden Inn Napa</h1>
+                <h3>3585 Solano Ave, Napa, CA</h3>
+              </div> -->
+            </div>
+            <div class="item banner-container" id="item-2">
+              <!-- <div class="carousel-caption">
+                <h1>Need To Sell Your Reservation? List it here!</h1>
+              </div> -->
+            </div>
+            <div class="item banner-container" id="item-3">
+              <!-- <div class="carousel-caption">
+                <h1>Hotel Reservations At Discounted Prices</h1>
+              </div> -->
+            </div>
+          </div>
+          <% end %>
+
+          <!-- Controls -->
+        <!--      
+          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+        -->
+        <%= render 'search_bar' %>
+        </div> <!-- Carousel -->
+    </header>
+
+<!-- "How to" section -->
+
+<%#= render 'how_to' %>
+
+<!-- testimonials section -->
+<div class="top-buffer"></div> 
+<div class="top-buffer">
+  <%= render 'testimonials' %>
+</div>
+
+
+<%#= render 'hotels' %>
+
+<!-- List of Available Rooms -->
+  <% if @listings.any? %>
+    <%= render 'listings' %>
+  <% end %>
+
+
+<script>
+  //var mode = "<%= (defined? @hotel) ? 'hotel' : 'index' %>";
+  //var picture_link = "<%=  (defined? @hotel) ? @hotel.picture_link : '' %>";
+  var info = {
+    mode: "<%= (defined? @hotel) ? 'hotel' : 'index' %>",
+    hotel_name: "<%= (defined? @hotel) ? @hotel.shortname : '' %>",
+    picture_link: "<%=  (defined? @hotel) ? @hotel.picture_link : '' %>",
+  }
+</script>
+
+
+

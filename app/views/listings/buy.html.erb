@@ -1,0 +1,40 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-6">
+
+        <h1>Select your reservation</h1>
+
+        <% @listings.each do |listing| %>
+
+        <ul>
+
+          <li> Check-in: <%= listing.check_in %></li>
+          <li> Check-out: <%= listing.check_in %></li>
+          <li> Room-type: <%= listing.room_type %></li>
+          <li> Price: $<%= listing.price %></li>
+        </ul></br>
+
+
+
+        <% end %>
+
+    </div>
+
+    <div class="col-md-6">
+      <h1>Here is how it works</h1>
+
+      <ol>
+        <li></li>
+        <li></li>
+        <li></li>
+
+      </ol>
+
+
+    </div>
+
+  </div>
+
+</div>

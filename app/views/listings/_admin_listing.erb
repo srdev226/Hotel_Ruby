@@ -1,0 +1,51 @@
+<div class="admin">
+  <ul>
+    <h4> Listing Created By: <%= listing.user.first_name %> <%= listing.user.last_name %> (<%= listing.user.email %>)</h4>
+
+    <% if listing.confirmed_at? %>
+      <li>Listing Confirmed at <%= listing.confirmed_at %></li>
+      <li>Listing Confirmed by: <%= listing.confirmed_by %></li>
+    <% elsif listing.status != :expired %>
+      <h4><%= link_to "Click here to mark this listing as 'CONFIRMED' (listing is valid - per hotel records)", complete_listing_path(listing, listing.id), method: :patch %></h4>
+    <% end %>
+
+    <% if listing.switched_at? %>
+      <li>Listing Switched at <%= listing.switched_at %></li>
+    <% elsif listing.buyer.present? && listing.status != :expired %>
+      <h4><%= link_to "Click here to mark this listing as 'SWITCHED' (listing owner name has been changed on hotel systems)", switch_listing_path(listing, listing.id), method: :patch %></h4>
+    <% end %>
+
+    <li>Name On Reservation: <%= listing.name_on_reservation %></li>
+    <li>Hotel: <%= listing.hotel.fullname %></li>
+    <li>Room Type: <%= listing.room_type.type_ %></li>
+    <li>Listing ID: <%= listing.id %></li>
+    <li><%= listing.booking_engine.type_ %></li>
+    <li>Confirmation Number: <%= listing.confirmation_number %></li>
+    <li>Check in date: <%= listing.check_in %></li>
+    <li>Check out date: <%= listing.check_out %></li>
+    <li>Price $<%= listing.price %></li>
+   
+   <% unless listing.expired? %>
+    <li> 
+      <%= link_to 'Show Listing',
+      listing_path(listing),
+      class: "btn btn-info" %>
+
+      <%= link_to 'Edit Listing',
+      edit_listing_path(listing),
+      class: "btn btn-primary" %>
+
+      <%= link_to 'Delete Listing',
+      listing_path(listing),
+      class: "btn btn-danger",
+      method: :delete,
+      data: { confirm: 'Are you sure?' } %>
+    </br>
+ 
+    <%= link_to 'Edit Listing',
+      edit_listing_path(listing),
+      class: "btn btn-danger" %>
+    </li>
+  <% end %>
+  </ul>
+</div>

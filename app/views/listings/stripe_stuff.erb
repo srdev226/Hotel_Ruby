@@ -1,0 +1,87 @@
+
+
+<!-- in listings controller -->
+
+skip_before_action :verify_authenticity_token, only: :pay
+
+
+<!-- // show page below PayPal button -->
+
+  <form action="<%= pay_listing_path %>" method="POST">
+  <script
+   src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+   data-key="<%= @listing.user.publishable_key %>"
+   data-amount="<%= (@listing.price * 100)*@num_days %>"
+   data-name="RoomHub"
+   data-description="Widget"
+   data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+   data-locale="auto">
+  </script>
+</form>
+
+
+<!-- show page at bottom -->
+
+<h3>Next Step: sign up for Stripe so you can get paid when your reservation sells!</h3>
+
+<%= link_to image_tag('/stripe_logo.png'), user_stripe_connect_omniauth_authorize_path %>
+
+<!-- Omniauth Callbacks Controller -->
+
+class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+
+  def stripe_connect
+    @user = current_user
+    if @user.update_attributes({
+      provider: request.env["omniauth.auth"].provider,
+      uid: request.env["omniauth.auth"].uid,
+      access_code: request.env["omniauth.auth"].credentials.token,
+      publishable_key: request.env["omniauth.auth"].info.stripe_publishable_key
+    })
+      # anything else you need to do in response..
+      sign_in_and_redirect @user
+      set_flash_message(:notice, :success, :kind => "Stripe") if is_navigational_format?
+    else
+      session["devise.stripe_connect_data"] = request.env["omniauth.auth"]
+      redirect_to new_user_registration_url
+    end
+  end
+
+end
+
+<!-- listings controller pay action -->
+
+def pay
+    token = params[:stripeToken]
+    current_user.payments.create(stripe_token: token)
+
+    # change this to your prod token and probably put it somewhere more global
+    Stripe.api_key = @listing.user.access_code
+
+    @num_days = (@listing.check_out - @listing.check_in).to_i
+
+    @amount = (@listing.price * 100) * @num_days
+
+    @platform_fee = (@amount * 0.15).round
+
+    charge = Stripe::Charge.create(
+      amount: @amount,
+      currency: "usd",
+      description: "Example charge",
+      source: token,
+      application_fee: @platform_fee
+    )
+
+    flash[:success] = "Credit card charged!"
+
+    # change this to somewhere smarter
+    redirect_to root_path
+  end
+
+<!-- buyers and sellers viers in shared folder add to end of file -->
+
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+    <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+  <% end -%>
+<% end -%>
