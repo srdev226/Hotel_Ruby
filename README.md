@@ -1,13 +1,10 @@
 # Vacancy Travel
 
-Code repository for [Vacancy Travel](vacancytravel.com),
- an application by @rmindigo.
+Code repository for [Vacancy Travel],
+ an application by @urazovm.
 
-* [GitHub](https://github.com/rmindigo/hotel)
-* [Trello](https://trello.com/b/9p76bIJk/vacancy-travel)
+* [GitHub](https://github.com/maraturazov/Hotel)
 * [Staging]() (not set up yet)
-* [Production](https://dry-crag-87998.herokuapp.com/)
-
 ## Documentation
 
 Documentation is contained in Markdown files within the repository
